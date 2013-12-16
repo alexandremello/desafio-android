@@ -13,15 +13,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	ListView lstCategory;
@@ -30,15 +26,17 @@ public class MainActivity extends Activity {
 	
 	List<Category> lstCategories = new ArrayList<Category>();
 
-	private static String url = "@string/uri" + "categories.json";
+	private static String url = "http://192.168.10.196:3000/categories.json";
+	//private static String url = "http://api.learn2crack.com/android/jsonos/";
 
-	JSONArray arrCategories;
+	JSONArray arrCategories = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		new getJSON().execute();
 	}
 
 	@Override
@@ -85,31 +83,28 @@ public class MainActivity extends Activity {
 					int id = c.getInt("id");
 					String description = c.getString("description");
 					String image_url = c.getString("image_url");
-					// Adding value HashMap key => value
+
 					Category category = new Category(id, description, image_url);
 					lstCategories.add(category);
 					
-					lstCategory = (ListView) findViewById(R.id.lstCategory);
-					
-					ListAdapter adapter = new SimpleAdapter(MainActivity.this,
-							oslist, R.layout.list_v, new String[] { TAG_VER,
-									TAG_NAME, TAG_API }, new int[] { R.id.vers,
-									R.id.name, R.id.api });
-					lstCategory.setAdapter(adapter);
-					lstCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-						@Override
-						public void onItemClick(AdapterView<?> parent,
-								View view, int position, long id) {
-							Toast.makeText(
-									MainActivity.this,
-									"You Clicked at " + lstCategories.get(+position).getDescription(),
-									Toast.LENGTH_SHORT).show();
-						}
-					});
+//					lstCategory = (ListView) findViewById(R.id.lstCategory);
+//					
+//					lstCategory.setAdapter(adapter);
+//					lstCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//						@Override
+//						public void onItemClick(AdapterView<?> parent,
+//								View view, int position, long id) {
+//							Toast.makeText(
+//									MainActivity.this,
+//									"You Clicked at " + lstCategories.get(+position).getDescription(),
+//									Toast.LENGTH_SHORT).show();
+//						}
+//					});
 				}
 			} catch (JSONException e) {
-				e.printStackTrace();
+				Log.e("JSON Parser", "Erro" + e.toString());
+				//e.printStackTrace();
 			}
 		}
 
