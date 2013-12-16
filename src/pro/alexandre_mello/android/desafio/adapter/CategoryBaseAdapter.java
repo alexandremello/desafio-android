@@ -1,15 +1,11 @@
 package pro.alexandre_mello.android.desafio.adapter;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import pro.alexandre_mello.android.desafio.R;
 import pro.alexandre_mello.android.desafio.bean.Category;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,21 +27,6 @@ public class CategoryBaseAdapter extends BaseAdapter {
 	private class ViewHolder {
 		ImageView imgCategory;
 		TextView txtCategory;
-	}
-
-	private Drawable getRemoteImage(String url) {
-		URL image_url;
-		Drawable remoteImage = null;
-		try {
-			image_url = new URL(url);
-			remoteImage = Drawable.createFromStream(image_url.openStream(),
-					"src");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return remoteImage;
 	}
 
 	@Override
@@ -84,8 +65,8 @@ public class CategoryBaseAdapter extends BaseAdapter {
 		Category category = (Category) getItem(position);
 
 		holder.txtCategory.setText(category.getDescription());
-		holder.imgCategory.setImageDrawable(getRemoteImage("@string/uri" + category.getImage_url()));
-		
+		//holder.imgCategory.setImageDrawable(getRemoteImage("http://192.168.10.196:3000" + category.getImage_url()));
+		//UrlImageViewHelper.setUrlDrawable(holder.imgCategory, "http://192.168.10.196:3000" + category.getImage_url());
 		return convertView;
 	}
 
