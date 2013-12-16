@@ -10,9 +10,9 @@ import org.json.JSONObject;
 import pro.alexandre_mello.android.desafio.adapter.CategoryBaseAdapter;
 import pro.alexandre_mello.android.desafio.bean.Category;
 import pro.alexandre_mello.android.desafio.library.JSONParser;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +22,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	ListView lstCategory;
@@ -100,15 +99,9 @@ public class MainActivity extends Activity {
 					lstCategory
 							.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 								@Override
-								public void onItemClick(AdapterView<?> parent,
-										View view, int position, long id) {
-									Toast.makeText(
-											MainActivity.this,
-											"You clicked at "
-													+ lstCategories.get(
-															+position)
-															.getDescription(),
-											Toast.LENGTH_SHORT).show();
+								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+									Intent intent = new Intent(getBaseContext(), WordActivity.class);
+									startActivity(intent);
 								}
 							});
 				}
