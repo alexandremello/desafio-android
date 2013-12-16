@@ -2,6 +2,8 @@ package pro.alexandre_mello.android.desafio.adapter;
 
 import java.util.List;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import pro.alexandre_mello.android.desafio.R;
 import pro.alexandre_mello.android.desafio.bean.Category;
 import android.app.Activity;
@@ -66,7 +68,7 @@ public class CategoryBaseAdapter extends BaseAdapter {
 
 		holder.txtCategory.setText(category.getDescription());
 		//holder.imgCategory.setImageDrawable(getRemoteImage("http://192.168.10.196:3000" + category.getImage_url()));
-		//UrlImageViewHelper.setUrlDrawable(holder.imgCategory, "http://192.168.10.196:3000" + category.getImage_url());
+		UrlImageViewHelper.setUrlDrawable(holder.imgCategory, "http://192.168.10.196:3000" + category.getImage_url());
 		return convertView;
 	}
 

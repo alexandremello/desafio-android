@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
 			imgCategory = (ImageView) findViewById(R.id.imgCategory);
 			txtCategory = (TextView) findViewById(R.id.txtCategory);
 
+			pDialog = new ProgressDialog(MainActivity.this);
 			pDialog.setMessage("Getting data...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
@@ -98,8 +99,6 @@ public class MainActivity extends Activity {
 
 					lstCategory
 							.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-								@SuppressLint("ShowToast")
 								@Override
 								public void onItemClick(AdapterView<?> parent,
 										View view, int position, long id) {
@@ -109,9 +108,8 @@ public class MainActivity extends Activity {
 													+ lstCategories.get(
 															+position)
 															.getDescription(),
-											Toast.LENGTH_SHORT);
+											Toast.LENGTH_SHORT).show();
 								}
-
 							});
 				}
 			} catch (JSONException e) {
