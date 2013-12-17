@@ -100,8 +100,8 @@ public class MainActivity extends Activity {
 							.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 								@Override
 								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-									Intent intent = new Intent(getBaseContext(), WordActivity.class);
-									//intent.putExtra("category_id", lstCategories.get(position).getId());
+									Intent intent = new Intent(MainActivity.this, WordActivity.class);
+									intent.putExtra("category_id", lstCategories.get(position).getId());
 									startActivity(intent);
 								}
 							});
