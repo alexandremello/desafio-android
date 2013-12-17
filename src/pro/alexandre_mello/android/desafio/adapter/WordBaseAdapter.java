@@ -4,8 +4,8 @@ import java.util.List;
 
 import pro.alexandre_mello.android.desafio.R;
 import pro.alexandre_mello.android.desafio.bean.Word;
-import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +49,8 @@ public class WordBaseAdapter extends BaseAdapter {
 		ViewHolder holder = null;
 
 		LayoutInflater mInflater = (LayoutInflater) context
-				.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				// .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_word, null);
 			holder = new ViewHolder();
@@ -60,6 +61,7 @@ public class WordBaseAdapter extends BaseAdapter {
 		}
 		
 		Word word = (Word) getItem(position);
+		Log.d("WordBaseAdapter", "word: " + String.valueOf(word.getId()) + "- " + word.getWord());
 		
 		holder.txtWord.setText(word.getWord());
 		return convertView;
