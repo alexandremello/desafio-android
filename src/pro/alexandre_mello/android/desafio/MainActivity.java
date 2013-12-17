@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 			txtCategory = (TextView) findViewById(R.id.txtCategory);
 
 			pDialog = new ProgressDialog(MainActivity.this);
-			pDialog.setMessage("Getting data...");
+			pDialog.setMessage("Getting categories...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(true);
 			pDialog.show();
@@ -101,12 +101,13 @@ public class MainActivity extends Activity {
 								@Override
 								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 									Intent intent = new Intent(getBaseContext(), WordActivity.class);
+									//intent.putExtra("category_id", lstCategories.get(position).getId());
 									startActivity(intent);
 								}
 							});
 				}
 			} catch (JSONException e) {
-				Log.e("JSON Parser", "Erro" + e.toString());
+				Log.e("JSON Parser", "Error " + e.toString());
 			}
 		}
 	}

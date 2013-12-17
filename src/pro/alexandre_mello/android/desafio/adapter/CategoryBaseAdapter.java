@@ -67,7 +67,6 @@ public class CategoryBaseAdapter extends BaseAdapter {
 		Category category = (Category) getItem(position);
 
 		holder.txtCategory.setText(category.getDescription());
-		//holder.imgCategory.setImageDrawable(getRemoteImage("http://192.168.10.196:3000" + category.getImage_url()));
 		UrlImageViewHelper.setUrlDrawable(holder.imgCategory, "http://192.168.10.196:3000" + category.getImage_url());
 		return convertView;
 	}
