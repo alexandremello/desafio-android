@@ -54,7 +54,7 @@ public class WordBaseAdapter extends BaseAdapter {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_word, null);
 			holder = new ViewHolder();
-			holder.txtWord = (TextView) convertView.findViewById(R.id.txtWord);
+			holder.txtWord = (TextView) convertView.findViewById(R.id.txtAddWordCategoryDescription);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();

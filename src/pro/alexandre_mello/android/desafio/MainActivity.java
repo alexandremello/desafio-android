@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			imgCategory = (ImageView) findViewById(R.id.imgCategory);
-			txtCategory = (TextView) findViewById(R.id.txtCategory);
+			txtCategory = (TextView) findViewById(R.id.txtWordCategory);
 
 			pDialog = new ProgressDialog(MainActivity.this);
 			pDialog.setMessage("Getting categories...");
@@ -102,6 +102,7 @@ public class MainActivity extends Activity {
 								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 									Intent intent = new Intent(MainActivity.this, WordActivity.class);
 									intent.putExtra("category_id", lstCategories.get(position).getId());
+									intent.putExtra("description", lstCategories.get(position).getDescription());
 									startActivity(intent);
 								}
 							});

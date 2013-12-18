@@ -8,13 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".WordActivity" >
 
+    <TextView
+        android:id="@+id/txtWordCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <ListView
         android:id="@+id/lstWord"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btnAddWord"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/btnAddWord" >
+        android:layout_below="@+id/txtWordCategory" >
 
     </ListView>
 

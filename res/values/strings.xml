@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="image">Category</string>
     <string name="uri">http://localhost:3000/</string>
+    <string name="title_activity_add_word">AddWordActivity</string>
 
 </resources>

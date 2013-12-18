@@ -12,7 +12,7 @@
         android:contentDescription="@string/image" />
 
     <TextView
-        android:id="@+id/txtCategory"
+        android:id="@+id/txtWordCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />

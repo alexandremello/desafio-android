@@ -14,6 +14,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -21,13 +24,14 @@ import android.widget.TextView;
 
 public class WordActivity extends Activity {
 	ListView listWord;
+	TextView txtWordCategory;
 	TextView txtWord;
+	Button btnAddWord;
 	ArrayList<HashMap<String, String>> wordList = new ArrayList<HashMap<String, String>>();
 	Intent intent;
 	int category_id;
+	String description;
 	private String url;
-	// private String url =
-	// "http://192.168.10.196:3000/categories/1/words.json";
 
 	JSONArray arrWords = null;
 
@@ -38,13 +42,30 @@ public class WordActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_word);
 
+		txtWordCategory = (TextView) findViewById(R.id.txtWordCategory);
+		btnAddWord = (Button) findViewById(R.id.btnAddWord);
+		btnAddWord.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(WordActivity.this,
+						AddWordActivity.class);
+				startActivity(intent);
+			}
+		});
+
 		intent = getIntent();
 		category_id = intent.getIntExtra("category_id", 0);
+		description = intent.getStringExtra("description");
+		
+		txtWordCategory.setText(description);
+		
 		url = "http://192.168.10.196:3000/categories/"
 				+ String.valueOf(category_id) + "/words.json";
 		Log.d("WordActivity", "getJSON.execute");
 		Log.d("WordActivity", url);
 		new getJSON().execute();
+
 	}
 
 	private class getJSON extends AsyncTask<String, String, JSONObject> {
@@ -55,7 +76,7 @@ public class WordActivity extends Activity {
 			Log.d("WordActivity - getJSON", "onPreExecute");
 			super.onPreExecute();
 
-			txtWord = (TextView) findViewById(R.id.txtWord);
+			txtWord = (TextView) findViewById(R.id.txtAddWordCategoryDescription);
 
 			pDialog = new ProgressDialog(WordActivity.this);
 			pDialog.setMessage("Getting words...");
@@ -101,7 +122,8 @@ public class WordActivity extends Activity {
 					listWord = (ListView) findViewById(R.id.lstWord);
 					ListAdapter adapter = new SimpleAdapter(WordActivity.this,
 							wordList, R.layout.list_word,
-							new String[] { "word" }, new int[] { R.id.txtWord });
+							new String[] { "word" },
+							new int[] { R.id.txtAddWordCategoryDescription });
 					listWord.setAdapter(adapter);
 				}
 			} catch (JSONException e) {

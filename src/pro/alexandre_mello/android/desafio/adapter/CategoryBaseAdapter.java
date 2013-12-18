@@ -58,7 +58,7 @@ public class CategoryBaseAdapter extends BaseAdapter {
 			holder.imgCategory = (ImageView) convertView
 					.findViewById(R.id.imgCategory);
 			holder.txtCategory = (TextView) convertView
-					.findViewById(R.id.txtCategory);
+					.findViewById(R.id.txtWordCategory);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
