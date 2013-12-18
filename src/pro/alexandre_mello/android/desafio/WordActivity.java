@@ -51,34 +51,35 @@ public class WordActivity extends Activity {
 				Intent intent = new Intent(WordActivity.this,
 						AddWordActivity.class);
 				intent.putExtra("category", category);
-				//startActivity(intent);
+				// startActivity(intent);
 				startActivityForResult(intent, 1);
 			}
 		});
 
 		intent = getIntent();
 		category = (Category) intent.getParcelableExtra("category");
-		
+
 		txtWordCategory.setText(category.getDescription());
-		
-		url = "http://192.168.10.196:3000/categories/"
+
+		// url = "http://192.168.10.196:3000/categories/"
+		url = getApplicationContext().getString(R.string.uri) + "/categories/"
 				+ String.valueOf(category.getId()) + "/words.json";
 		Log.d("WordActivity", "getJSON.execute");
 		Log.d("WordActivity", url);
 		new getJSON().execute();
 
 	}
-	
+
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		  if (requestCode == 1) {
+		if (requestCode == 1) {
 
-		     if(resultCode == RESULT_OK){
-		    	 wordList.clear();
-		    	 new getJSON().execute();
-		     }
-		  }
-		}//onActivityResult
+			if (resultCode == RESULT_OK) {
+				wordList.clear();
+				new getJSON().execute();
+			}
+		}
+	}// onActivityResult
 
 	private class getJSON extends AsyncTask<String, String, JSONObject> {
 		private ProgressDialog pDialog;

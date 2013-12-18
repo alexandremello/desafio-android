@@ -2,11 +2,10 @@ package pro.alexandre_mello.android.desafio.adapter;
 
 import java.util.List;
 
-import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-
 import pro.alexandre_mello.android.desafio.R;
 import pro.alexandre_mello.android.desafio.bean.Category;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 public class CategoryBaseAdapter extends BaseAdapter {
 	Context context;
@@ -67,7 +68,8 @@ public class CategoryBaseAdapter extends BaseAdapter {
 		Category category = (Category) getItem(position);
 
 		holder.txtCategory.setText(category.getDescription());
-		UrlImageViewHelper.setUrlDrawable(holder.imgCategory, "http://192.168.10.196:3000" + category.getImage_url());
+		String url = context.getString(R.string.uri);
+		UrlImageViewHelper.setUrlDrawable(holder.imgCategory, url + category.getImage_url());
 		return convertView;
 	}
 

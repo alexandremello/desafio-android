@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 
 	List<Category> lstCategories = new ArrayList<Category>();
 
-	private static String url = "http://192.168.10.196:3000/categories.json";
+	String url;
 
 	JSONArray arrCategories = null;
 
@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		url = getApplicationContext().getString(R.string.uri) + "/categories.json";
 		new getJSON().execute();
 	}
 

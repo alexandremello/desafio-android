@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    
     <ListView
         android:id="@+id/lstWord"
         android:layout_width="fill_parent"
