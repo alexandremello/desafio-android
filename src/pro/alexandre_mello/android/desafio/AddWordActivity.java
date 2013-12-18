@@ -86,15 +86,6 @@ public class AddWordActivity extends Activity {
 				jsonWord.put("word", word);
 				jsonObjSend.put("word", jsonWord);
 
-				// Add a nested JSONObject (e.g. for header information)
-				// JSONObject header = new JSONObject();
-				// header.put("deviceType", "Android"); // Device type
-				// header.put("deviceVersion", "4.4"); // Device OS version
-				// header.put("language", "pt-br"); // Language of the
-				// Android
-				// client
-				//jsonObjSend.put("header", header);
-
 				// Output the JSON object we're sending to Logcat:
 				Log.i(TAG, jsonObjSend.toString(2));
 
@@ -103,11 +94,11 @@ public class AddWordActivity extends Activity {
 			}
 
 			// Send the HttpPostRequest and receive a JSONObject in return
-			JSONObject jsonObjRecv = HttpClient.SendHttpPost(url,
-					jsonObjSend);
+			JSONObject jsonObjRecv = HttpClient.SendHttpPost(url, jsonObjSend);
 
-			// Toast.makeText(AddWordActivity.this, jsonObjRecv.toString(),
-			// Toast.LENGTH_SHORT).show();
+//			Toast.makeText(AddWordActivity.this,
+//					"Response: " + jsonObjRecv.toString(), Toast.LENGTH_SHORT)
+//					.show();
 			return null;
 		}
 
@@ -115,6 +106,10 @@ public class AddWordActivity extends Activity {
 		protected void onPostExecute(JSONObject json) {
 			Log.d(TAG, "sendJSON.onPostExecute");
 			pDialog.dismiss();
+			
+			Intent returnIntent = new Intent();
+			setResult(RESULT_OK, returnIntent);
+			finish();
 		}
 	}
 }

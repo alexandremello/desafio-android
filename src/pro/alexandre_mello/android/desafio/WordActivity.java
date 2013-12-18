@@ -51,7 +51,8 @@ public class WordActivity extends Activity {
 				Intent intent = new Intent(WordActivity.this,
 						AddWordActivity.class);
 				intent.putExtra("category", category);
-				startActivity(intent);
+				//startActivity(intent);
+				startActivityForResult(intent, 1);
 			}
 		});
 
@@ -67,6 +68,17 @@ public class WordActivity extends Activity {
 		new getJSON().execute();
 
 	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		  if (requestCode == 1) {
+
+		     if(resultCode == RESULT_OK){
+		    	 wordList.clear();
+		    	 new getJSON().execute();
+		     }
+		  }
+		}//onActivityResult
 
 	private class getJSON extends AsyncTask<String, String, JSONObject> {
 		private ProgressDialog pDialog;

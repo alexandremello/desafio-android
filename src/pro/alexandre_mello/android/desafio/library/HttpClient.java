@@ -47,10 +47,6 @@ public class HttpClient {
 				InputStream instream = entity.getContent();
 				Header contentEncoding = response
 						.getFirstHeader("Content-Encoding");
-				// if (contentEncoding != null
-				// && contentEncoding.getValue().equalsIgnoreCase("gzip")) {
-				// instream = new GZIPInputStream(instream);
-				// }
 
 				// convert content stream to a String
 				String resultString = convertStreamToString(instream);
@@ -65,8 +61,6 @@ public class HttpClient {
 				// Raw DEBUG output of our received JSON object:
 				Log.i(TAG, "<JSONObject>\n" + jsonObjRecv.toString()
 						+ "\n</JSONObject>");
-
-				return jsonObjRecv;
 			}
 
 		} catch (Exception e) {
