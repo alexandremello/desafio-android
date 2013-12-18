@@ -101,8 +101,7 @@ public class MainActivity extends Activity {
 								@Override
 								public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 									Intent intent = new Intent(MainActivity.this, WordActivity.class);
-									intent.putExtra("category_id", lstCategories.get(position).getId());
-									intent.putExtra("description", lstCategories.get(position).getDescription());
+									intent.putExtra("category", lstCategories.get(position));
 									startActivity(intent);
 								}
 							});

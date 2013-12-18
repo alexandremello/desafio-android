@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import pro.alexandre_mello.android.desafio.bean.Category;
 import pro.alexandre_mello.android.desafio.library.JSONParser;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -29,8 +30,7 @@ public class WordActivity extends Activity {
 	Button btnAddWord;
 	ArrayList<HashMap<String, String>> wordList = new ArrayList<HashMap<String, String>>();
 	Intent intent;
-	int category_id;
-	String description;
+	Category category;
 	private String url;
 
 	JSONArray arrWords = null;
@@ -50,18 +50,18 @@ public class WordActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(WordActivity.this,
 						AddWordActivity.class);
+				intent.putExtra("category", category);
 				startActivity(intent);
 			}
 		});
 
 		intent = getIntent();
-		category_id = intent.getIntExtra("category_id", 0);
-		description = intent.getStringExtra("description");
+		category = (Category) intent.getParcelableExtra("category");
 		
-		txtWordCategory.setText(description);
+		txtWordCategory.setText(category.getDescription());
 		
 		url = "http://192.168.10.196:3000/categories/"
-				+ String.valueOf(category_id) + "/words.json";
+				+ String.valueOf(category.getId()) + "/words.json";
 		Log.d("WordActivity", "getJSON.execute");
 		Log.d("WordActivity", url);
 		new getJSON().execute();
